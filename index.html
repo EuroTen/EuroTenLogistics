@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EuroTen | Connecting the Global Tennis Supply Chain</title>
-    <meta name="description" content="EuroTen is a European logistics and distribution company specialized in the tennis industry, helping brands manage sourcing, import, and distribution.">
+    <meta name="description" content="EuroTen enables tennis brands and manufacturers to enter and scale within the European market through specialized sourcing, import, and distribution.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -150,7 +150,34 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Stats Section -->
+    <section class="py-16 bg-light border-t border-gray-100">
+        <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 text-center">
+
+                <!-- Stat 1 -->
+                <div class="animate-on-scroll">
+                    <h3 class="text-4xl md:text-5xl font-bold text-primary mb-2 counter" data-target="200">0+</h3>
+                    <p class="text-secondary text-sm font-medium">Tennis Shops & Stringers</p>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="animate-on-scroll delay-100">
+                    <h3 class="text-4xl md:text-5xl font-bold text-primary mb-2 counter" data-target="3000">0+</h3>
+                    <p class="text-secondary text-sm font-medium">Coaches in Network</p>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="animate-on-scroll delay-200">
+                    <h3 class="text-4xl md:text-5xl font-bold text-primary mb-2">Europe-wide</h3>
+                    <p class="text-secondary text-sm font-medium">Distribution Focus</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Services Section Core -->
     <section id="services" class="py-24 bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
             <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
@@ -189,14 +216,14 @@
                     <h4 class="text-xl font-bold text-gray-900 mb-3">Market Entry</h4>
                     <p class="text-sm font-medium text-secondary mb-4">For Global Tennis Brands</p>
                     <p class="text-gray-600 font-light leading-relaxed">
-                        Comprehensive support for non-European brands establishing a foothold. We handle the logistical backbone so you can focus on sales and brand growth.
+                        Comprehensive support for non-European brands establishing a foothold. Unlike general logistics providers, we combine industry-specific knowledge with direct market access.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why EuroTen Section -->
+    <!-- Why EuroTen Section Advantage -->
     <section id="why-euroten" class="py-24 bg-light">
         <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -252,7 +279,7 @@
         </div>
     </section>
 
-    <!-- Tennis Specialization Section -->
+    <!-- Tennis Specialization Section Niche -->
     <section id="specialization" class="py-24 bg-primary text-white overflow-hidden relative">
         <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#B8C61E 1px, transparent 1px); background-size: 32px 32px;"></div>
         
@@ -515,6 +542,39 @@
                 }
             });
         }
+        const counters = document.querySelectorAll('.counter');
+
+    const animateCounter = (counter) => {
+        const target = Number(counter.getAttribute('data-target'));
+        let current = 0;
+        const increment = target / 100;
+
+        const updateCounter = () => {
+            current += increment;
+
+            if (current < target) {
+                counter.textContent = Math.floor(current).toLocaleString() + '+';
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target.toLocaleString() + '+';
+            }
+        };
+
+        updateCounter();
+    };
+
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+
+    counters.forEach(counter => {
+        counterObserver.observe(counter);
+    });
     </script>
 </body>
 </html>
